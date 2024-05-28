@@ -1,28 +1,29 @@
 <template>
-  <el-menu v-model="activeIndex" class="el-menu-vertical-demo">
-    <el-menu-item index="1" @click="route">
-      <el-icon>
-        <Notebook/>
+  <el-menu v-model="activeIndex" class="el-menu-vertical-demo" style="width: 120px;">
+    <el-menu-item index="1" @click="route" style="" class="item">
+      <el-icon class="large-icon">
+        <Notebook />
       </el-icon>
-      <el-button link :type="'primary'">图书信息</el-button>
+      <el-button link :type="'primary'" class="large-button">图书信息</el-button>
     </el-menu-item>
 
     <el-menu-item
         v-if="!adminStore.isAdmin"
         index="2"
         @click="router.push('/borrow')"
+        class="item"
     >
-      <el-icon>
-        <search/>
+      <el-icon class="large-icon">
+        <Search />
       </el-icon>
-      <el-button link :type="'primary'">借阅记录</el-button>
+      <el-button link :type="'primary'" class="large-button">借阅记录</el-button>
     </el-menu-item>
 
-    <el-menu-item index="3" @click="router.push('/user')">
-      <el-icon>
-        <User/>
+    <el-menu-item index="3" @click="router.push('/user')" class="item">
+      <el-icon class="large-icon">
+        <User />
       </el-icon>
-      <el-button link :type="'primary'">个人信息</el-button>
+      <el-button link :type="'primary'" class="large-button">个人信息</el-button>
     </el-menu-item>
 
     <el-menu-item
@@ -30,20 +31,36 @@
         index="4"
         @click="router.push('/reader')"
     >
-      <el-icon>
-        <setting/>
+      <el-icon class="large-icon">
+        <Setting />
       </el-icon>
-      <el-button link :type="'primary'">用户管理</el-button>
+      <el-button link :type="'primary'" class="large-button">用户管理</el-button>
     </el-menu-item>
 
     <el-menu-item index="5" @click="logout">
-      <el-icon>
-        <switch-button/>
+      <el-icon class="large-icon">
+        <SwitchButton />
       </el-icon>
-      <el-button link :type="'danger'">退出登录</el-button>
+      <el-button link :type="'danger'" class="large-button">退出登录</el-button>
     </el-menu-item>
   </el-menu>
 </template>
+
+<style scoped>
+.large-icon {
+  width: 120px;
+  height: 120px;
+  font-size: 40px;
+}
+
+.large-button {
+  font-size: 20px;
+  padding: 10px;
+}
+.item{
+margin-bottom:30px
+}
+</style>
 
 <script lang="ts" setup>
 import {Notebook, Search, Setting, SwitchButton, User} from "@element-plus/icons-vue";
@@ -84,5 +101,3 @@ const route = () => {
   }
 };
 </script>
-
-

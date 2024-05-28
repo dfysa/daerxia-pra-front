@@ -60,7 +60,7 @@ const url = ref("https://pic.imgdb.cn/item/65a271fe871b83018a8f9a8f.gif");
           <el-avatar
               @click="router.push('/user')"
               shape="square"
-              :size="42"
+              :size="90"
               :fit="'cover'"
               :src="url"
           />
@@ -68,7 +68,7 @@ const url = ref("https://pic.imgdb.cn/item/65a271fe871b83018a8f9a8f.gif");
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="frontend">
-              <el-button link type="primary" :icon="Link">前端项目</el-button>
+              <el-button link type="primary" :icon="Link" >前端项目</el-button>
             </el-dropdown-item>
 
             <el-dropdown-item command="backend">
@@ -93,10 +93,10 @@ const url = ref("https://pic.imgdb.cn/item/65a271fe871b83018a8f9a8f.gif");
       </el-menu-item>
 
       <el-menu-item h="full">
-        <el-tag v-if="isAdmin" type="warning" size="large" round>
+        <el-tag v-if="isAdmin" type="warning" size="large" round >
           管理员
         </el-tag>
-        <el-tag v-else size="large" round> 读者</el-tag>
+        <el-tag v-else size="large" round style="height: 70px;width: 120px;font-size:26px"> 读者</el-tag>
       </el-menu-item>
 
       <!--深浅色图标-->

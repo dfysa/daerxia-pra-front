@@ -6,8 +6,8 @@ import HeaderView from "@/components/HeaderView.vue";
 import { Search } from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
 import { borrowService } from "@/methods/borrow.js";
-import {useRouter} from "vue-router";
-const router = useRouter();
+
+
 const tableData = ref([]);
 
 // 页面加载时获取所有书籍
@@ -58,13 +58,13 @@ const handleCurrentChange = (val) => {
 
 let detail = ref(false);
 
-// // 显示当前书籍详细信息
-// const showDetail = (row) => {
-//   detail.value = true;
-//   book.value = row;
-//   console.log("detail:" + detail.value);
-//   console.log(row);
-// };
+// 显示当前书籍详细信息
+const showDetail = (row) => {
+  detail.value = true;
+  book.value = row;
+  console.log("detail:" + detail.value);
+  console.log(row);
+};
 
 //书籍信息
 let book = ref({
@@ -105,18 +105,60 @@ const disabledDate = (time) => {
 <!-- --------------------------------------- 一条朴实的分割线 ----------------------------------------- -->
 <template>
   <div>
-    <el-container style="padding: 0; margin: 0;">
+    <el-container>
       <!--侧栏-->
-      <el-aside width="400px">
+      <el-aside width="200px">
         <side-view />
       </el-aside>
       <el-container>
-        <el-header height="100px">
+        <el-header>
           <header-view />
         </el-header>
         <el-main>
           <el-row>
             <el-col :span="24">
+
+          <el-row>
+                <el-button
+                  @click="getAllBooks"
+                  :icon="Search"
+                  size="large"
+                  type="success"
+                  circle
+                  :span="2"
+                />
+                <el-col :span="1" />
+                <el-col :span="6">
+                  <el-input
+                    @input="getAllBooks"
+                    v-model="condition.bookName"
+                    size="large"
+                    placeholder="书名"
+                    clearable
+                  />
+                </el-col>
+                <el-col :span="1" />
+                <el-col :span="6">
+                  <el-input
+                    @input="getAllBooks"
+                    v-model="condition.author"
+                    size="large"
+                    placeholder="作者"
+                    clearable
+                  />
+                </el-col>
+                <el-col :span="1" />
+                <el-col :span="6">
+                  <el-input
+                    @input="getAllBooks"
+                    v-model="condition.isbn"
+                    size="large"
+                    placeholder="ISBN"
+                    clearable
+                  />
+                </el-col>
+              </el-row>
+
               <!--搜索条件框-->
               <el-row>
                 <el-button
@@ -126,7 +168,6 @@ const disabledDate = (time) => {
                   type="success"
                   circle
                   :span="2"
-                  
                 />
                 <el-col :span="1" />
                 <el-col :span="6">
@@ -181,23 +222,13 @@ const disabledDate = (time) => {
 
                 <el-table-column label="操作" width="150">
                   <template #default="scope">
-                    <!-- <el-button
+                    <el-button
                       link
                       type="primary"
                       size="small"
                       @click="showDetail(scope.row)"
                       >详细信息
-                    </el-button> -->
-       <el-button
-                      link
-                      type="primary"
-                      size="small"
-                        @click="router.push('/bookdetail')"
-                      >详细信息
                     </el-button>
-
-
-                  
                     <el-button
                       link
                       type="primary"
@@ -260,7 +291,7 @@ const disabledDate = (time) => {
               <!--详细信息表单-->
               <el-dialog
                 title="图书详细信息"
-                width="100%"
+                width="50%"
                 center
                 align-center
                 v-model="detail"
